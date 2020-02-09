@@ -69,7 +69,7 @@ class Eloquent implements ConnectionInterface
 
     public function configure(BuilderInterface $builder, ElementFactoryInterface $elementFactory)
     {
-        $builder->add($elementFactory->newSelect('driver', 'Driver', ['mysql', 'pgsql', 'sqlsrv'], 'Eloquent driver'));
+        $builder->add($elementFactory->newSelect('driver', 'Driver', ['mysql' => 'MYSQL', 'pgsql' => 'Postgres', 'sqlsrv' => 'MSSQL'], 'Eloquent driver'));
         $builder->add($elementFactory->newInput('host', 'Host', 'text', 'The database host'));
         $builder->add($elementFactory->newInput('database', 'Database', 'text', 'The database name'));
         $builder->add($elementFactory->newInput('username', 'Username', 'text', 'The database username'));
