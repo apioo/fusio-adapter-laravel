@@ -1,0 +1,33 @@
+{
+  "name": "fusio/adapter-laravel",
+  "description": "Integrates features of the laravel framework",
+  "homepage": "http://fusio-project.org",
+  "keywords": ["fusio-adapter"],
+  "license": "AGPL-3.0",
+  "authors": [
+    {
+      "name": "Christoph Kappestein",
+      "email": "christoph.kappestein@gmail.com",
+      "homepage": "http://christoph.kappestein.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.0",
+    "fusio/engine": "^3.0",
+    "illuminate/database": "^6.14",
+    "illuminate/events": "^6.14"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^6.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Fusio\\Adapter\\Laravel\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Fusio\\Adapter\\Laravel\\Tests\\": "tests/"
+    }
+  }
+}
