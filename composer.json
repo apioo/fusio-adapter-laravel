@@ -14,8 +14,8 @@
   "require": {
     "php": ">=7.0",
     "fusio/engine": "^3.0",
-    "illuminate/database": "^6.14",
-    "illuminate/events": "^6.14"
+    "illuminate/database": "^7.0",
+    "illuminate/events": "^7.0"
   },
   "require-dev": {
     "phpunit/phpunit": "^6.0"
