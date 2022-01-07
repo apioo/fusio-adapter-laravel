@@ -12,8 +12,8 @@
     }
   ],
   "require": {
-    "php": ">=7.2",
-    "fusio/engine": "^4.0",
+    "php": ">=8.0",
+    "fusio/engine": "^5.0",
     "illuminate/database": "^7.0|^8.0",
     "illuminate/events": "^7.0|^8.0"
   },

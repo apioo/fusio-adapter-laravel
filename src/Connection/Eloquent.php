@@ -3,7 +3,7 @@
  * Fusio
  * A web-application to create dynamically RESTful APIs
  *
- * Copyright (C) 2015-2020 Christoph Kappestein <christoph.kappestein@gmail.com>
+ * Copyright (C) 2015-2022 Christoph Kappestein <christoph.kappestein@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -34,20 +34,16 @@ use Illuminate\Events\Dispatcher;
  *
  * @author  Christoph Kappestein <christoph.kappestein@gmail.com>
  * @license http://www.gnu.org/licenses/agpl-3.0
- * @link    http://fusio-project.org
+ * @link    https://www.fusio-project.org/
  */
 class Eloquent implements ConnectionInterface
 {
-    public function getName()
+    public function getName(): string
     {
         return 'Eloquent';
     }
 
-    /**
-     * @param \Fusio\Engine\ParametersInterface $config
-     * @return \Illuminate\Database\Capsule\Manager
-     */
-    public function getConnection(ParametersInterface $config)
+    public function getConnection(ParametersInterface $config): Capsule
     {
         $capsule = new Capsule();
 
@@ -67,7 +63,7 @@ class Eloquent implements ConnectionInterface
         return $capsule;
     }
 
-    public function configure(BuilderInterface $builder, ElementFactoryInterface $elementFactory)
+    public function configure(BuilderInterface $builder, ElementFactoryInterface $elementFactory): void
     {
         $builder->add($elementFactory->newSelect('driver', 'Driver', ['mysql' => 'MYSQL', 'pgsql' => 'Postgres', 'sqlsrv' => 'MSSQL'], 'Eloquent driver'));
         $builder->add($elementFactory->newInput('host', 'Host', 'text', 'The database host'));
