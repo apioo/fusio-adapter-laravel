@@ -16,6 +16,9 @@ of your Laravel app through Fusio. This works only in case Fusio is on the same 
 as your Laravel app since the action includes and executes the app. This helps to
 quickly expose the logic of your Laravel app as clean API through Fusio.
 
+Note: This action is currently in beta phase, please let us know in case you have
+specific requirements regarding an integration.
+
 ## Connection
 
 Through the Eloquent connection you can build API endpoints using the Eloquent
