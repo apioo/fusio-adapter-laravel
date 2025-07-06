@@ -67,7 +67,6 @@ class LaravelInvoke extends ActionAbstract implements ConfigurableInterface
         $arguments = $request->getArguments();
         $path = $this->replaceDynamicValues($configuration->get('path') ?? throw new ConfigurationException('Provided no path'), $arguments);
         $method = $configuration->get('method') ?? throw new ConfigurationException('Provided no method');
-        $userId = (int) $configuration->get('user_id');
 
         try {
             /** @psalm-suppress UndefinedClass */
@@ -79,13 +78,6 @@ class LaravelInvoke extends ActionAbstract implements ConfigurableInterface
             );
 
             $kernel = $app->make(HttpKernelContract::class);
-
-            if ($userId > 0) {
-                $user = Capsule::table('users')->where('user_id', '=', $userId)->get();
-                if ($user instanceof Authenticatable) {
-                    Auth::login($user);
-                }
-            }
 
             $symfonyResponse = $kernel->handle($symfonyRequest);
 
@@ -102,7 +94,6 @@ class LaravelInvoke extends ActionAbstract implements ConfigurableInterface
         $builder->add($elementFactory->newInput('base_dir', 'Base Directory', 'text', 'The base directory of the laravel app'));
         $builder->add($elementFactory->newInput('path', 'Path', 'text', 'The path passed to the laravel app'));
         $builder->add($elementFactory->newInput('method', 'Method', 'text', 'The method passed to the laravel app'));
-        $builder->add($elementFactory->newInput('user_id', 'User-ID', 'text', 'Optional the user id which should be used for authentication'));
     }
 
     private function replaceDynamicValues(string $path, array $arguments): string
