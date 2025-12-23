@@ -58,18 +58,16 @@ class LaravelInvoke extends ActionAbstract implements ConfigurableInterface
             throw new ConfigurationException('Provided an invalid laravel base dir');
         }
 
-        /** @psalm-suppress UnresolvableInclude */
-        require $baseDir . '/vendor/autoload.php';
+        require_once $baseDir . '/vendor/autoload.php';
 
-        /** @psalm-suppress UnresolvableInclude */
-        $app = require_once $baseDir . '/bootstrap/app.php';
+        $app = require $baseDir . '/bootstrap/app.php';
 
         $arguments = $request->getArguments();
         $path = $this->replaceDynamicValues($configuration->get('path') ?? throw new ConfigurationException('Provided no path'), $arguments);
         $method = $configuration->get('method') ?? throw new ConfigurationException('Provided no method');
 
         try {
-            /** @psalm-suppress UndefinedClass */
+            /** @phpstan-ignore class.notFound */
             $symfonyRequest = Request::create(
                 uri: $path,
                 method: $method,
@@ -96,6 +94,9 @@ class LaravelInvoke extends ActionAbstract implements ConfigurableInterface
         $builder->add($elementFactory->newInput('method', 'Method', 'text', 'The method passed to the laravel app'));
     }
 
+    /**
+     * @param array<string, mixed> $arguments
+     */
     private function replaceDynamicValues(string $path, array $arguments): string
     {
         foreach ($arguments as $name => $value) {
